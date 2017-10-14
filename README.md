@@ -4,7 +4,7 @@ This program automatically print pdf files found in a folder.
 
 ## Dependencies
 - Qt5
-- Poppler Qt5
+- Poppler Qt5 
 
 ## For Windows
 cmake parameter: -DCMAKE_PREFIX_PATH="Path_to_Qt"
