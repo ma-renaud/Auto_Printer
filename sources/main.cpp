@@ -1,6 +1,16 @@
-int main(int argc, char *argv[]) {
+#include <QApplication>
+#include "AutoPrinter.h"
+#include <iostream>
 
-//TODO: app here
+int main(int argc, char *argv[]) {
+  QApplication a(argc, argv);
+
+  std::string mystr;
+  std::cout << "Folder to check: ";
+  getline (std::cin, mystr);
+
+  AutoPrinter printer(QString::fromStdString(mystr));
+  printer.checkForPdf ();
 
   return 0;
 }
