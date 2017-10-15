@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.8.0)
 set(CMAKE_CXX_STANDARD 14)
-
-set(CMAKE_CXX_FLAGS "-Wall -Wextra")
-set(CMAKE_CXX_FLAGS_DEBUG "-g")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
 project(autoPrinter)
 
@@ -13,11 +11,10 @@ set(CMAKE_AUTOMOC ON)
 
 # Find the QtWidgets library
 find_package(Qt5 COMPONENTS Core Widgets PrintSupport REQUIRED)
+find_package(PopplerQt5)
 
-file(GLOB_RECURSE USER_INCLUDES "includes/*.h"
-                                "/usr/include/poppler/qt5/*.h")
+file(GLOB_RECURSE USER_INCLUDES "includes/*.h")
 include_directories("includes")
-include_directories("/usr/include/poppler/qt5")
 
 file(GLOB_RECURSE USER_SOURCES "sources/*.cpp")
 
@@ -25,4 +22,4 @@ file(GLOB_RECURSE USER_SOURCES "sources/*.cpp")
 add_executable(${PROJECT_NAME} ${USER_SOURCES} ${USER_INCLUDES})
 
 # Use the Widgets module from Qt 5.
-target_link_libraries(${PROJECT_NAME} Qt5::PrintSupport /usr/lib64/libpoppler-qt5.so)
+target_link_libraries(${PROJECT_NAME} Qt5::PrintSupport ${POPPLER_LIBRARIES})
